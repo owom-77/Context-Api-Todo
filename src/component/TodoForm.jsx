@@ -1,23 +1,23 @@
 import React, { useState } from 'react'
-import { useTodo } from '../context/TodoContetx';
+import { useTodos } from '../context/TodoContext';
 
 export default function TodoForm() {
 
+    let {addTodo} = useTodos()
     let [todo,setTodo] = useState('')
-    let {addTodo} = useTodo()
 
-    let addHandle = (e)=>{
+    let add = (e)=>{
 
         if(!todo) return 
 
-        addTodo({todo,complete : false})
+        addTodo({todo,status : false})
         setTodo('')
 
         e.preventDefault()
     }
 
     return (
-        <form onSubmit={addHandle}  className="flex">
+        <form onSubmit={add}  className="flex">
             <input
                 type="text"
                 placeholder="Write Todo..."
